@@ -3,8 +3,8 @@
        AUTO SCROLL SETTINGS  (change these numbers only)
        ===================================================== */
     const AUTO_SCROLL_ENABLED     = true; // false = turn auto scroll off completely
-    const AUTO_SCROLL_DELAY       = 5;    // seconds to wait AFTER the invitation is visible, then start scrolling
-    const AUTO_SCROLL_SPEED       = 45;   // pixels per second (20 = slow, 45 = calm, 80 = fast)
+    const AUTO_SCROLL_DELAY       = 3;    // seconds to wait AFTER the invitation is visible, then start scrolling
+    const AUTO_SCROLL_SPEED       = 55;   // pixels per second (20 = slow, 45 = calm, 80 = fast)
     const AUTO_SCROLL_RESUME_IDLE = 0;    // seconds of no touching before it restarts by itself (0 = never restart)
     /* ===================================================== */
 
