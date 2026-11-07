@@ -1,4 +1,13 @@
 (function () {
+    /* =====================================================
+       AUTO SCROLL SETTINGS  (change these numbers only)
+       ===================================================== */
+    const AUTO_SCROLL_ENABLED     = true; // false = turn auto scroll off completely
+    const AUTO_SCROLL_DELAY       = 5;    // seconds to wait AFTER the invitation is visible, then start scrolling
+    const AUTO_SCROLL_SPEED       = 45;   // pixels per second (20 = slow, 45 = calm, 80 = fast)
+    const AUTO_SCROLL_RESUME_IDLE = 0;    // seconds of no touching before it restarts by itself (0 = never restart)
+    /* ===================================================== */
+
     const page = document.getElementById("finalPage");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const $$ = s => [...page.querySelectorAll(s)];
@@ -28,7 +37,65 @@
         all.forEach(e => io.observe(e));
         onScroll();
         startPetals();
+        scheduleAutoScroll();
     };
+
+    /* =====================================================
+       AUTO SCROLL
+       - waits AUTO_SCROLL_DELAY seconds, then glides down the page
+       - stops as soon as the visitor touches, scrolls, clicks or presses a key
+       - stops by itself when it reaches the bottom
+       ===================================================== */
+    let asRunning = false, asRaf = 0, asStartTimer = null, asResumeTimer = null;
+    let asPos = 0, asLast = null, asArmed = false;
+
+    function asStep(t) {
+        if (!asRunning) return;
+        if (asLast === null) asLast = t;
+        const dt = Math.min((t - asLast) / 1000, 0.1);   // clamp so a background tab doesn't cause a jump
+        asLast = t;
+        const max = page.scrollHeight - page.clientHeight;
+        asPos += AUTO_SCROLL_SPEED * dt;                  // we keep our own decimal position so slow speeds stay smooth
+        if (asPos >= max) {
+            page.scrollTop = max;
+            stopAutoScroll(false);                        // reached the bottom: finish, don't restart
+            return;
+        }
+        page.scrollTop = asPos;
+        asRaf = requestAnimationFrame(asStep);
+    }
+
+    function runAutoScroll() {
+        if (asRunning) return;
+        asRunning = true;
+        asLast = null;
+        asPos = page.scrollTop;
+        page.style.scrollBehavior = "auto";               // CSS has smooth scrolling, which would fight every small step
+        asRaf = requestAnimationFrame(asStep);
+    }
+
+    function stopAutoScroll(allowResume) {
+        clearTimeout(asStartTimer);
+        clearTimeout(asResumeTimer);
+        if (asRunning) {
+            asRunning = false;
+            cancelAnimationFrame(asRaf);
+            page.style.scrollBehavior = "";               // give smooth scrolling back to the menu links
+        }
+        if (allowResume && AUTO_SCROLL_RESUME_IDLE > 0) {
+            asResumeTimer = setTimeout(runAutoScroll, AUTO_SCROLL_RESUME_IDLE * 1000);
+        }
+    }
+
+    function scheduleAutoScroll() {
+        if (!AUTO_SCROLL_ENABLED || reduce || asArmed) return;
+        asArmed = true;
+        // any real user action cancels auto scroll
+        ["wheel", "touchstart", "pointerdown", "keydown"].forEach(ev =>
+            page.addEventListener(ev, () => { if (asArmed) stopAutoScroll(true); }, { passive: true })
+        );
+        asStartTimer = setTimeout(runAutoScroll, AUTO_SCROLL_DELAY * 1000);
+    }
 
     /* ---- falling petals + tiny blossoms over the whole page ---- */
     function startPetals() {

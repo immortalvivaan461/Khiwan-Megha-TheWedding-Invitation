@@ -108,6 +108,7 @@
 .fp-small { font-size: 16px; opacity: .85; }
 .fp-elder { margin: 2px 0; font-size: 18px; font-weight: 600; }
 .fp-person { margin: 22px 0 2px; font-family: 'Great Vibes', cursive; font-weight: 400; font-size: clamp(54px, 13vw, 72px); line-height: 1.1; color: var(--rose); }
+.fp-megha { margin-top: 5px !important}
 .fp-with { margin-top: 14px; font-family: 'Great Vibes', cursive; font-size: 26px; color: var(--gold); }
 
 /* ---------- venue ---------- */
