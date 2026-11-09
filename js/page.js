@@ -97,8 +97,8 @@
         endTime: "",
         location: "The Grand Barso, Bharatpur, Rajasthan",
         description: "Join us to celebrate the wedding of Khiwan & Megha at The Grand Barso, Bharatpur, Rajasthan. " +
-            "Celebrations: 21 November - Mehendi, Ishq ka Rang (11:00 AM) and Engagement & Sangeet, Jashn-e-Ishq (7:00 PM). " +
-            "22 November - Haldi, Noor-e-Haldi and the Wedding, Shubh Vivaah."
+            "Celebrations:  22 November - Haldi, Noor-e-Haldi 10:00 AM onward,#KhiwanKiBaraat 06:00 pm onwards, and the Wedding, Shubh Vivaah." + 
+            "Jaimala 09:00 pm onwards, The Gala Dinner 10:00 pm onwards, Shubh Vivaah 11:30 pm onwards Moodboard: Traditional attire"
     };
 
     (function setupCalendar() {
