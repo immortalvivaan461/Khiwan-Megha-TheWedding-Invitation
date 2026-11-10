@@ -158,75 +158,14 @@
 
 /* ---------- itinerary ---------- */
 .final-page > .fp-itinerary { background: linear-gradient(180deg, var(--ivory), var(--blush) 45%, var(--ivory)); }
-
-.fp-tabs { display: inline-flex; padding: 5px; border: 1px solid rgba(201,164,106,.6); border-radius: 999px; background: var(--ivory); }
+.fp-tabs { display: inline-flex; padding: 5px; border: 1px solid rgba(201,164,106,.6); border-radius: 999px; background: var(--ivory); margin-top: 15px; }
 .fp-tabs button { display: flex; flex-direction: column; align-items: center; padding: 8px 30px; border: 0; border-radius: 999px; background: none; color: var(--brown); font: inherit; line-height: 1.2; cursor: pointer; transition: background .35s, color .35s; }
 .fp-tabs button small { font-size: 13px; }
 .fp-tabs button[aria-selected="true"] { background: var(--rose); color: var(--ivory); }
+.fp-tabs2 {margin-top: 50px; }
 .fp-panel { width: 100%; max-width: 820px; }
 .fp-day { margin: 28px 0 26px; font-size: 20px; }
 
-/* .fp-tabs {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 650px;
-  padding: 0;
-  margin: 30px auto;
-  border: none;
-  border-radius: 0;
-  background: transparent;
-  box-sizing: border-box;
-}
-
-.fp-tabs button {
-  display: block;
-  width: 100%;
-  min-width: 0;
-  padding: 0;
-  margin: 0;
-  border: none;
-  border-radius: 0;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  line-height: normal;
-  cursor: pointer;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.fp-tabs button img {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-  object-position: center;
-}
-
-.fp-tabs button[aria-selected="true"] {
-  background: transparent;
-  color: inherit;
-}
-
-/* Tablet */
-@media (max-width: 768px) {
-  .fp-tabs {
-    max-width: 90%;
-    margin: 24px auto;
-  }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-  .fp-tabs {
-    width: 96%;
-    max-width: 100%;
-    margin: 20px auto;
-  }
-} */
 
 /* event cards: framed arch illustration (replaceable image) + names + time + dress code */
 .fp-panel:not([hidden]) { animation: panelIn .7s var(--ease) both; }
